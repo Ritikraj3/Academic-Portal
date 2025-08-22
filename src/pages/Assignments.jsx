@@ -1,40 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import { DataContext } from "../context/DataContext"; 
 import { useAssignmentFilter } from "../hooks/useAssignmentFilter";
 
 const Assignments = () => {
-  // sample assignment data
-  const assignments = [
-    {
-      id: "A1",
-      courseId: "CSE101",
-      title: "Intro to Programming - Lab 1",
-      status: "Completed",
-      dueDate: "2024-09-10",
-    },
-    {
-      id: "A2",
-      courseId: "CSE201",
-      title: "Data Structures - Project",
-      status: "Ongoing",
-      dueDate: "2024-09-25",
-    },
-    {
-      id: "A3",
-      courseId: "MTH102",
-      title: "Discrete Math - Worksheet",
-      status: "Completed",
-      dueDate: "2024-08-20",
-    },
-    {
-      id: "A4",
-      courseId: "PHY111",
-      title: "Physics Lab Report",
-      status: "Ongoing",
-      dueDate: "2024-09-30",
-    },
-  ];
+  const { assignments, setAssignments } = useContext(DataContext);
 
-  // ✅ use custom hook
   const {
     filterCourseId,
     setFilterCourseId,
@@ -43,11 +13,22 @@ const Assignments = () => {
     filteredAssignments,
   } = useAssignmentFilter(assignments);
 
+  const handleStatusChange = (id, newStatus) => {
+    setAssignments((prev) =>
+      prev.map((a) => (a.id === id ? { ...a, status: newStatus } : a))
+    );
+  };
+
+  const handleDateChange = (id, newDate) => {
+    setAssignments((prev) =>
+      prev.map((a) => (a.id === id ? { ...a, dueDate: newDate } : a))
+    );
+  };
+
   return (
     <div>
       <h2>Assignments</h2>
 
-      {/* Filters */}
       <div className="filters">
         <input
           type="text"
@@ -63,7 +44,6 @@ const Assignments = () => {
         />
       </div>
 
-      {/* Table */}
       <table className="assignment-table">
         <thead>
           <tr>
@@ -84,8 +64,22 @@ const Assignments = () => {
                 <td>{a.id}</td>
                 <td>{a.courseId}</td>
                 <td>{a.title}</td>
-                <td>{a.status}</td>
-                <td>{a.dueDate}</td>
+                <td>
+                  <select
+                    value={a.status}
+                    onChange={(e) => handleStatusChange(a.id, e.target.value)}
+                  >
+                    <option value="Completed">Completed</option>
+                    <option value="Ongoing">Ongoing</option>
+                  </select>
+                </td>
+                <td>
+                  <input
+                    type="date"
+                    value={a.dueDate}
+                    onChange={(e) => handleDateChange(a.id, e.target.value)}
+                  />
+                </td>
               </tr>
             ))
           ) : (

@@ -1,20 +1,26 @@
-/* ========== Global Styles ========== */
+@import "tailwindcss";
+
+
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #181818;   /* Dark background */
-  color: #e0e0e0;        /* Neutral light text */
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #181818;   
+  color: #e0e0e0;        
+  line-height: 1.5;
 }
 
-/* ========== Navbar ========== */
+
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #202020; /* Neutral dark */
+  background: #202020;
   color: #f1f1f1;
-  padding: 10px 20px;
+  padding: 12px 20px;
   border-bottom: 1px solid #333;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .navbar-left {
@@ -23,22 +29,24 @@ body {
 }
 
 .hamburger {
-  font-size: 20px;
-  margin-right: 10px;
+  font-size: 22px;
+  margin-right: 12px;
   background: none;
   border: none;
-  color: #f1f1f1;
+  color: inherit;
   cursor: pointer;
+  transition: color 0.2s ease;
 }
 
 .hamburger:hover {
-  color: #bbb; /* Subtle hover */
+  color: #bbb;
 }
 
 .logo {
   margin: 0;
   font-weight: bold;
   color: #f1f1f1;
+  font-size: 18px;
 }
 
 .breadcrumbs {
@@ -48,53 +56,123 @@ body {
   color: #aaa;
 }
 
-/* ========== Breadcrumbs ========== */
 .breadcrumbs a {
   color: #ddd;
   text-decoration: none;
+  transition: color 0.2s;
 }
-
 .breadcrumbs a:hover {
   color: #fff;
 }
-
 .breadcrumbs span {
   color: #777;
   padding-left: 5px;
 }
 
-/* ========== Navbar Right Button ========== */
 .navbar-right {
   display: flex;
   align-items: center;
 }
 
 .user-btn {
-  background: #2a2a2a; 
+  background: #2a2a2a;
   color: #f1f1f1;
   border: 1px solid #444;
-  padding: 6px 12px;
+  padding: 6px 14px;
   cursor: pointer;
-  border-radius: 4px;
-  transition: background 0.2s ease;
+  border-radius: 6px;
+  transition: background 0.2s ease, transform 0.1s ease;
 }
-
 .user-btn:hover {
   background: #383838;
+  transform: scale(1.03);
 }
 
-/* ========== Main Layout ========== */
+.dropdown-menu {
+  position: absolute;
+  right: 1rem;
+  top: 3.5rem;
+  background: #383838;
+  border: 1px solid #8a8a8a;
+  border-radius: 6px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  min-width: 180px;
+  z-index: 100;
+}
+
+.dropdown-item {
+  padding: 10px 15px;
+  text-align: left;
+  border: none;
+  color: #f1f1f1;
+  background: transparent;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.dropdown-item:hover {
+  background: #515151;
+}
+
+.dropdown-item.logout {
+  color: red;
+  font-weight: bold;
+}
+
+
+
+.dashboard-widgets {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.stat-card {
+  background: #2a2a2a;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.card {
+  background: #2a2a2a;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+}
+
+.stat-card h3 {
+  font-size: 1rem;
+  color: #cecdcdfd;
+  margin-bottom: 0.5rem;
+}
+
+.stat-card p {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+
+
 .main-container {
   display: flex;
+  min-height: calc(100vh - 50px);
 }
 
-/* ========== Sidebar ========== */
+
 .sidebar {
   width: 220px;
   background: #202020;
-  height: calc(100vh - 50px);
   padding: 20px;
   border-right: 1px solid #333;
+  transition: width 0.3s ease;
 }
 
 .sidebar h3 {
@@ -107,148 +185,240 @@ body {
 .sidebar ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
-
 .sidebar ul li {
   margin: 12px 0;
 }
-
 .sidebar ul li a {
   text-decoration: none;
   color: #bbb;
   font-size: 15px;
   display: block;
-  padding: 8px 12px;
+  padding: 10px 14px;
   border-radius: 6px;
-  transition: background 0.2s ease;
+  transition: background 0.2s ease, color 0.2s ease;
 }
-
 .sidebar ul li a:hover {
   background: #2e2e2e;
   color: #fff;
 }
 
-/* ========== Content Area ========== */
 .content-area {
   flex: 1;
   padding: 20px;
   background: #181818;
   color: #e0e0e0;
+  overflow-x: auto;
 }
 
-/* ========== Form Inputs (for profile page) ========== */
+
 input, textarea {
   width: 100%;
   background: #222;
   border: 1px solid #444;
   color: #f1f1f1;
   padding: 10px;
-  border-radius: 4px;
+  border-radius: 6px;
   margin-bottom: 15px;
   font-size: 14px;
+  transition: border-color 0.2s, background 0.2s;
 }
-
 input:focus, textarea:focus {
   outline: none;
   border-color: #666;
   background: #2a2a2a;
 }
 
-/* table */
 
-.course-table {
+.course-table, .assignment-table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
   background: #202020;
   color: #e0e0e0;
   border: 1px solid #333;
+  border-radius: 6px;
+  overflow: hidden;
 }
 
 .course-table th,
-.course-table td {
-  padding: 12px;
-  text-align: left;
+.assignment-table th,
+.course-table td,
+.assignment-table td {
+  padding: 8px 12px; 
+  vertical-align: middle;
   border-bottom: 1px solid #333;
 }
 
-.course-table th {
+.course-table th,
+.assignment-table th {
   background: #2a2a2a;
   font-weight: 600;
 }
 
-.course-table tr:hover {
+.course-table tr:hover,
+.assignment-table tr:hover {
   background: #2e2e2e;
 }
 
-/* CGPA */
+
+.assignment-table tr.completed {
+  color: #00ff99; 
+}
+.assignment-table tr.ongoing {
+  color: #ffcc00; 
+}
+
+
+.assignment-table tr.completed select {
+  color: #00ff99;        
+}
+
+
+.assignment-table tr.ongoing select {
+  color: #ffcc00;
+}
+
+
 
 .cgpa-box {
   margin-top: 20px;
-  padding: 12px;
+  padding: 14px;
   background: #1e1e1e;
-  color: #00ff99; /* stands out against dark theme */
+  color: #00ff99;
   border: 1px solid #333;
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 18px;
   font-weight: bold;
 }
 
-/* Assignment */
 
 .filters {
   display: flex;
   gap: 10px;
   margin-bottom: 15px;
+  flex-wrap: wrap; 
 }
-
 .filters input {
+  flex: 1;
+  min-width: 140px;
   background: #222;
   border: 1px solid #444;
   color: #f1f1f1;
-  padding: 8px;
-  border-radius: 4px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.2s, background 0.2s;
 }
-
-.assignment-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: #202020;
-  color: #e0e0e0;
-  border: 1px solid #333;
-}
-
-.assignment-table th,
-.assignment-table td {
-  padding: 10px;
-  text-align: left;
-  border-bottom: 1px solid #333;
-}
-
-.assignment-table th {
+.filters input:focus {
+  border-color: #666;
   background: #2a2a2a;
 }
 
-.assignment-table tr.completed {
-  color: #00ff99; /* green for completed */
-}
-
-.assignment-table tr.ongoing {
-  color: #ffcc00; /* yellow for ongoing */
-}
-
-.assignment-table tr:hover {
-  background: #2e2e2e;
-}
 
 .error {
   color: #ff6666;
   margin-top: 10px;
 }
-
 .no-data {
   padding: 15px;
   text-align: center;
   color: #aaa;
+  font-style: italic;
 }
 
+
+.assignment-table select {
+  background: #222;
+  color: #f1f1f1;
+  border: 1px solid #444;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  appearance: none; 
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.assignment-table select:hover {
+  background: #2a2a2a;
+  border-color: #666;
+}
+
+
+.assignment-table select {
+  background-image: url("data:image/svg+xml;utf8,<svg fill='%23f1f1f1' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 16px;
+  padding-right: 28px; 
+}
+
+
+.assignment-table input[type="date"] {
+  width: 180px;         
+  max-width: 100%;      
+  box-sizing: border-box;
+  background: #222;
+  color: #f1f1f1;
+  border: 1px solid #444;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+.assignment-table input[type="date"]:hover {
+  background: #2a2a2a;
+  border-color: #666;
+}
+
+
+.assignment-table input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1); 
+  cursor: pointer;
+}
+
+
+
+@media (max-width: 768px) {
+  .main-container {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid #333;
+    padding: 15px;
+  }
+  .content-area {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    flex-wrap: wrap;         
+    flex-direction: row;     
+    gap: 6px;
+  }
+
+  .breadcrumbs {
+    flex-basis: 100%;        
+    text-align: center;      
+    font-size: 12px;
+  }
+
+  .filters {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .filters input {
+    width: 100%;
+  }
+
+  table, th, td {
+    font-size: 12px;
+    padding: 6px;
+  }
+}
