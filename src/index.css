@@ -1,0 +1,15 @@
+.breadcrumbs {
+    margin-bottom: 20px;
+    font-size: 16px;
+    text-transform: capitalize;
+}
+
+.breadcrumbs a {
+    color: #333;
+    text-decoration: none;
+}
+
+.breadcrumbs span {
+    color: #999;
+    padding-left: 5px;
+}
