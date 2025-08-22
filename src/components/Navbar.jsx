@@ -1,17 +1,23 @@
-import React from 'react'
-import Breadcrumb from './Breadcrumb'
+import React from "react";
+import Breadcrumb from "./Breadcrumb";
 
-const Navbar = () => {
+const Navbar = ({ toggleSidebar }) => {
   return (
     <div className="navbar">
-      <div className="breadcrumb-container">
-        <Breadcrumb />
+      <div className="navbar-left">
+        <button className="hamburger" onClick={toggleSidebar}>
+          ☰
+        </button>
+        <h2 className="logo">LOGO</h2>
       </div>
-      <div className="user-actions">
+
+      <Breadcrumb />
+
+      <div className="navbar-right">
         <button className="user-btn">Profile</button>
       </div>
     </div>
   );
 };
 
-export default Navbar
+export default Navbar;

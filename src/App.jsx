@@ -1,28 +1,24 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import PersonalData from './pages/PersonalData'
-import './App.css'
-import CGPA from './pages/CGPA'
-import Courses from './pages/Courses'
-import Dashboard from './components/Dashboard'
-import Assignment from './pages/Assignment'
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Dashboard from "./components/Dashboard";
+import PersonalData from "./pages/PersonalData";
+import Courses from "./pages/Courses";
+import Assignment from "./pages/Assignment";
+import CGPA from "./pages/CGPA";
 
 function App() {
-
   return (
-    <>
-      <BrowserRouter>
-    <div>
-      <Dashboard />
+    <Router>
+      <Dashboard>
         <Routes>
-           <Route path="/" element={<PersonalData/>} /> 
-           <Route path="/courses" element={<Courses/>} /> 
-           <Route path="/assignment" element={< Assignment/>} /> 
-           <Route path="/cgpa" element={<CGPA/>} /> 
+          <Route path="/" element={<PersonalData />} />
+          <Route path="/courses" element={<Courses />} />
+          <Route path="/assignment" element={<Assignment />} />
+          <Route path="/cgpa" element={<CGPA />} />
         </Routes>
-    </div>
-    </BrowserRouter>
-    </>
-  )
+      </Dashboard>
+    </Router>
+  );
 }
 
-export default App
+export default App;

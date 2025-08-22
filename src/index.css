@@ -1,15 +1,155 @@
-.breadcrumbs {
-    margin-bottom: 20px;
-    font-size: 16px;
-    text-transform: capitalize;
+/* ========== Global Styles ========== */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #181818;   /* Dark background */
+  color: #e0e0e0;        /* Neutral light text */
 }
 
+/* ========== Navbar ========== */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #202020; /* Neutral dark */
+  color: #f1f1f1;
+  padding: 10px 20px;
+  border-bottom: 1px solid #333;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.hamburger {
+  font-size: 20px;
+  margin-right: 10px;
+  background: none;
+  border: none;
+  color: #f1f1f1;
+  cursor: pointer;
+}
+
+.hamburger:hover {
+  color: #bbb; /* Subtle hover */
+}
+
+.logo {
+  margin: 0;
+  font-weight: bold;
+  color: #f1f1f1;
+}
+
+.breadcrumbs {
+  flex: 1;
+  text-align: center;
+  font-size: 14px;
+  color: #aaa;
+}
+
+/* ========== Breadcrumbs ========== */
 .breadcrumbs a {
-    color: #333;
-    text-decoration: none;
+  color: #ddd;
+  text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+  color: #fff;
 }
 
 .breadcrumbs span {
-    color: #999;
-    padding-left: 5px;
+  color: #777;
+  padding-left: 5px;
+}
+
+/* ========== Navbar Right Button ========== */
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.user-btn {
+  background: #2a2a2a; 
+  color: #f1f1f1;
+  border: 1px solid #444;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+.user-btn:hover {
+  background: #383838;
+}
+
+/* ========== Main Layout ========== */
+.main-container {
+  display: flex;
+}
+
+/* ========== Sidebar ========== */
+.sidebar {
+  width: 220px;
+  background: #202020;
+  height: calc(100vh - 50px);
+  padding: 20px;
+  border-right: 1px solid #333;
+}
+
+.sidebar h3 {
+  color: #e0e0e0;
+  margin-bottom: 20px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin: 12px 0;
+}
+
+.sidebar ul li a {
+  text-decoration: none;
+  color: #bbb;
+  font-size: 15px;
+  display: block;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+
+.sidebar ul li a:hover {
+  background: #2e2e2e;
+  color: #fff;
+}
+
+/* ========== Content Area ========== */
+.content-area {
+  flex: 1;
+  padding: 20px;
+  background: #181818;
+  color: #e0e0e0;
+}
+
+/* ========== Form Inputs (for profile page) ========== */
+input, textarea {
+  width: 100%;
+  background: #222;
+  border: 1px solid #444;
+  color: #f1f1f1;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border-color: #666;
+  background: #2a2a2a;
 }

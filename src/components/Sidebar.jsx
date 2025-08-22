@@ -1,10 +1,10 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   return (
-    <div className='sidebar'>
-      <h2>Student Portal</h2>
+    <div className="sidebar">
+      <h3>Student Portal</h3>
       <nav>
         <ul>
           <li><Link to="/">Personal Info</Link></li>
@@ -17,4 +17,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar
+export default Sidebar;

@@ -4,21 +4,20 @@ import { Link, useLocation } from "react-router-dom";
 const Breadcrumb = () => {
   const { pathname } = useLocation();
   const pathnames = pathname.split("/").filter((x) => x);
-  let breadcrumbPath = "";
 
   return (
     <div className="breadcrumbs">
-      <Link to="/">DashBoard</Link>
+      <Link to="/">Dashboard</Link>
       {pathnames.map((name, index) => {
-        breadcrumbPath += `/${name}`; ;
+        const routeTo = "/" + pathnames.slice(0, index + 1).join("/");
         const isLast = index === pathnames.length - 1;
+
         return isLast ? (
-          <span key={breadcrumbPath}> / {name}</span>
+          <span key={name}> / {name}</span>
         ) : (
-          <span key={breadcrumbPath}>/
-            <Link key={breadcrumbPath} to={breadcrumbPath}>
-               {name}
-            </Link>
+          <span key={name}>
+            {" / "}
+            <Link to={routeTo}>{name}</Link>
           </span>
         );
       })}
