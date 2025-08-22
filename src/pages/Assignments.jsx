@@ -1,23 +1,47 @@
-import React, { useState } from "react";
+import React from "react";
+import { useAssignmentFilter } from "../hooks/useAssignmentFilter";
 
 const Assignments = () => {
   // sample assignment data
   const assignments = [
-    { id: "A1", courseId: "CSE101", title: "Intro to Programming - Lab 1", status: "Completed", dueDate: "2024-09-10" },
-    { id: "A2", courseId: "CSE201", title: "Data Structures - Project", status: "Ongoing", dueDate: "2024-09-25" },
-    { id: "A3", courseId: "MTH102", title: "Discrete Math - Worksheet", status: "Completed", dueDate: "2024-08-20" },
-    { id: "A4", courseId: "PHY111", title: "Physics Lab Report", status: "Ongoing", dueDate: "2024-09-30" },
+    {
+      id: "A1",
+      courseId: "CSE101",
+      title: "Intro to Programming - Lab 1",
+      status: "Completed",
+      dueDate: "2024-09-10",
+    },
+    {
+      id: "A2",
+      courseId: "CSE201",
+      title: "Data Structures - Project",
+      status: "Ongoing",
+      dueDate: "2024-09-25",
+    },
+    {
+      id: "A3",
+      courseId: "MTH102",
+      title: "Discrete Math - Worksheet",
+      status: "Completed",
+      dueDate: "2024-08-20",
+    },
+    {
+      id: "A4",
+      courseId: "PHY111",
+      title: "Physics Lab Report",
+      status: "Ongoing",
+      dueDate: "2024-09-30",
+    },
   ];
 
-  // filters
-  const [filterCourseId, setFilterCourseId] = useState("");
-  const [filterAssignmentId, setFilterAssignmentId] = useState("");
-
-  // apply filters
-  const filteredAssignments = assignments.filter(a =>
-    (filterCourseId ? a.courseId.toLowerCase().includes(filterCourseId.toLowerCase()) : true) &&
-    (filterAssignmentId ? a.id.toLowerCase().includes(filterAssignmentId.toLowerCase()) : true)
-  );
+  // ✅ use custom hook
+  const {
+    filterCourseId,
+    setFilterCourseId,
+    filterAssignmentId,
+    setFilterAssignmentId,
+    filteredAssignments,
+  } = useAssignmentFilter(assignments);
 
   return (
     <div>
@@ -51,15 +75,24 @@ const Assignments = () => {
           </tr>
         </thead>
         <tbody>
-          {filteredAssignments.map((a) => (
-            <tr key={a.id} className={a.status === "Completed" ? "completed" : "ongoing"}>
-              <td>{a.id}</td>
-              <td>{a.courseId}</td>
-              <td>{a.title}</td>
-              <td>{a.status}</td>
-              <td>{a.dueDate}</td>
+          {filteredAssignments.length > 0 ? (
+            filteredAssignments.map((a) => (
+              <tr
+                key={a.id}
+                className={a.status === "Completed" ? "completed" : "ongoing"}
+              >
+                <td>{a.id}</td>
+                <td>{a.courseId}</td>
+                <td>{a.title}</td>
+                <td>{a.status}</td>
+                <td>{a.dueDate}</td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="5">No assignments found.</td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
     </div>
