@@ -153,3 +153,102 @@ input:focus, textarea:focus {
   border-color: #666;
   background: #2a2a2a;
 }
+
+/* table */
+
+.course-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background: #202020;
+  color: #e0e0e0;
+  border: 1px solid #333;
+}
+
+.course-table th,
+.course-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #333;
+}
+
+.course-table th {
+  background: #2a2a2a;
+  font-weight: 600;
+}
+
+.course-table tr:hover {
+  background: #2e2e2e;
+}
+
+/* CGPA */
+
+.cgpa-box {
+  margin-top: 20px;
+  padding: 12px;
+  background: #1e1e1e;
+  color: #00ff99; /* stands out against dark theme */
+  border: 1px solid #333;
+  border-radius: 6px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Assignment */
+
+.filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.filters input {
+  background: #222;
+  border: 1px solid #444;
+  color: #f1f1f1;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.assignment-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #202020;
+  color: #e0e0e0;
+  border: 1px solid #333;
+}
+
+.assignment-table th,
+.assignment-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #333;
+}
+
+.assignment-table th {
+  background: #2a2a2a;
+}
+
+.assignment-table tr.completed {
+  color: #00ff99; /* green for completed */
+}
+
+.assignment-table tr.ongoing {
+  color: #ffcc00; /* yellow for ongoing */
+}
+
+.assignment-table tr:hover {
+  background: #2e2e2e;
+}
+
+.error {
+  color: #ff6666;
+  margin-top: 10px;
+}
+
+.no-data {
+  padding: 15px;
+  text-align: center;
+  color: #aaa;
+}
+
