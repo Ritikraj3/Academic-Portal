@@ -61,7 +61,7 @@ The main goal is to show different types of student-related information like **a
 
 ---
 
-## How Everything Connects Together
+## Working:-
 
 * When app runs → **App.jsx loads Navbar + Sidebar + current Page**.
 * Pages get data from **Context (DataContext.jsx)**.
