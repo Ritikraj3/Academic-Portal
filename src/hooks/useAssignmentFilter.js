@@ -5,9 +5,9 @@ export const useAssignmentFilter = (assignments) => {
   const [filterAssignmentId, setFilterAssignmentId] = useState("");
 
   const filteredAssignments = useMemo(() => {
-    return assignments.filter((a) =>
-      (filterCourseId ? a.courseId.toLowerCase().includes(filterCourseId.toLowerCase()) : true) &&
-      (filterAssignmentId ? a.id.toLowerCase().includes(filterAssignmentId.toLowerCase()) : true)
+    return assignments.filter((oneAssign) =>
+      (filterCourseId ? oneAssign.courseId.toLowerCase().includes(filterCourseId.toLowerCase()) : true) &&
+      (filterAssignmentId ? oneAssign.id.toLowerCase().includes(filterAssignmentId.toLowerCase()) : true)
     );
   }, [assignments, filterCourseId, filterAssignmentId]);
 

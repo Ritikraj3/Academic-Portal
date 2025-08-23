@@ -3,80 +3,83 @@ import { DataContext } from "../context/DataContext";
 import { courses } from "../data/courses";
 import { studentData } from "../data/student";
 
-const DashboardWidget = () => {
+function DashboardWidget() {
+
   const { assignments } = useContext(DataContext);
 
-  const totalCourses = courses.length;
 
-  const completedAssignments = assignments.filter(
-    (a) => a.status === "Completed"
+  const numberOfCourses = courses.length;
+
+
+  const doneAssignments = assignments.filter(
+    (oneAssignment) => oneAssignment.status === "Completed"
   ).length;
 
-  const ongoingAssignments = assignments.filter(
-    (a) => a.status === "Ongoing"
+  const notDoneAssignments = assignments.filter(
+    (oneAssignment) => oneAssignment.status === "Ongoing"
   ).length;
 
-  const totalCredits = courses.reduce((sum, c) => sum + c.credits, 0);
-  const totalPoints = courses.reduce(
-    (sum, c) => sum + c.credits * c.points,
+
+  const totalCredits = courses.reduce(
+    (total, oneCourse) => total + oneCourse.credits,
     0
   );
+
+  const totalPoints = courses.reduce(
+    (total, oneCourse) => total + oneCourse.credits * oneCourse.points,
+    0
+  );
+
   const cgpa = (totalPoints / totalCredits).toFixed(2);
+
+
+  const showDetails = (title, info, symbol) => (                                //helper function for showcasing info cards.
+    <div className="card">
+      <h3 className="font-semibold mb-2">
+        {symbol} {title}
+      </h3>
+      {Object.entries(info).map(([thing, value]) => (
+        <p key={thing}>
+          <strong>{makeNiceName(thing)}:</strong> {value}
+        </p>
+      ))}
+    </div>
+  );
+
+
+  const makeNiceName = (word) =>
+    word
+      .replace(/([A-Z])/g, " $1")
+      .replace(/^./, (letter) => letter.toUpperCase());
 
   return (
     <div>
-      <h2 className="text-xl font-semibold mb-4">📊 Dashboard</h2>
+      <h2 className="text-xl font-semibold mb-4">📊 Student Dashboard</h2>
 
       <div className="dashboard-widgets">
-        <div className="card">
-          <h3 className="font-semibold mb-2">👤 Personal Details</h3>
-          <p><strong>Name:</strong> {studentData.personal.name}</p>
-          <p><strong>Roll No:</strong> {studentData.personal.rollNo}</p>
-          <p><strong>Email:</strong> {studentData.personal.email}</p>
-          <p><strong>Contact:</strong> {studentData.personal.contact}</p>
-        </div>
-
-        <div className="card">
-          <h3 className="font-semibold mb-2">🧑‍👩‍👦 Guardian</h3>
-          <p><strong>Name:</strong> {studentData.guardian.name}</p>
-          <p><strong>Relation:</strong> {studentData.guardian.relation}</p>
-          <p><strong>Contact:</strong> {studentData.guardian.contact}</p>
-        </div>
+        {showDetails("Personal Info", studentData.personal, "👤")}
+        {showDetails("Guardian Info", studentData.guardian, "🧑‍👩‍👦")}
       </div>
 
       <div className="dashboard-widgets">
-        <div className="card">
-          <h3 className="font-semibold mb-2">🎓 Academic Details</h3>
-          <p><strong>Program:</strong> {studentData.academic.program}</p>
-          <p><strong>Degree:</strong> {studentData.academic.degree}</p>
-          <p><strong>Discipline:</strong> {studentData.academic.discipline}</p>
-          <p><strong>Semester:</strong> {studentData.academic.semester}</p>
-          <p><strong>Joining Date:</strong> {studentData.academic.joiningDate}</p>
-        </div>
-
-        <div className="card">
-          <h3 className="font-semibold mb-2">📢 Notifications</h3>
-          <p><strong>Fee Due:</strong> {studentData.notifications.feeDue}</p>
-          <p><strong>Last Date:</strong> {studentData.notifications.lastDate}</p>
-          <p><strong>Status:</strong> {studentData.notifications.status}</p>
-          <p><strong>Notice:</strong> {studentData.notifications.notice}</p>
-        </div>
+        {showDetails("Academic Info", studentData.academic, "🎓")}
+        {showDetails("Notifications", studentData.notifications, "📢")}
       </div>
 
       <div className="dashboard-widgets">
         <div className="card stat-card completed">
           <h3>Total Courses</h3>
-          <p>{totalCourses}</p>
+          <p>{numberOfCourses}</p>
         </div>
 
         <div className="card stat-card">
           <h3>Completed Assignments</h3>
-          <p className="text-green-600 font-bold">{completedAssignments}</p>
+          <p className="text-green-600 font-bold">{doneAssignments}</p>
         </div>
 
         <div className="card stat-card">
           <h3>Ongoing Assignments</h3>
-          <p className="text-yellow-600 font-bold">{ongoingAssignments}</p>
+          <p className="text-yellow-600 font-bold">{notDoneAssignments}</p>
         </div>
 
         <div className="card stat-card">
@@ -86,6 +89,6 @@ const DashboardWidget = () => {
       </div>
     </div>
   );
-};
+}
 
 export default DashboardWidget;

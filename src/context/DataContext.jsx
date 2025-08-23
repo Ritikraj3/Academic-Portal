@@ -1,12 +1,12 @@
 import React, { createContext, useState, useEffect } from "react";
-import { assignments as initialAssignments } from "../data/assignments";
+import { assignments as existingAssignment } from "../data/assignments";
 
 export const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
   const [assignments, setAssignments] = useState(() => {
-    const saved = localStorage.getItem("assignments");
-    return saved ? JSON.parse(saved) : initialAssignments;
+    const savedAssignment = localStorage.getItem("assignments");
+    return savedAssignment ? JSON.parse(savedAssignment) : existingAssignment;
   });
 
   useEffect(() => {

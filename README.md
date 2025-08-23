@@ -1,32 +1,78 @@
-Got it. Here’s the same README in very plain and simple English:
+
+# Academic Portal App
+
+This project is a **student academic portal** built with **React**.
+The main goal is to show different types of student-related information like **assignments, courses, CGPA, dashboard widgets**, etc. in a clean way.
 
 ---
 
-# Academic Portal
+## Project Flow in Simple Words
 
-## About
+1. **Starting Point (main.jsx & App.jsx)**
 
-This is a student dashboard made with React.
-It has a top navbar, a sidebar on the left, and a main content area.
-Right now it shows pages like Personal Info, Courses, Assignments, and CGPA.
-
-## What is done till now
-
-* Navbar with logo, breadcrumb, and profile button
-* Sidebar with links to pages
-* Content area that shows the page when you click a link
-* By default, Personal Info page is shown
-* Dark theme added
-
-## What I still need to do
-
-* Make sidebar work better on small screens (slide in and out)
-* Improve design of the content area
-* Add real form inputs and save data
-* Connect to backend or API for real student details
-* Add login and roles (student, admin)
-* Write tests and clean the code
+   * The app starts from **main.jsx**.
+   * Here we wrap our app with **DataProvider (context)** so that all pages can use the same data easily.
+   * Then `App.jsx` decides what layout to show (Navbar, Sidebar, Pages).
 
 ---
 
-Do you also want me to make this README short enough for a **GitHub project front page** (just 6–7 lines max), or keep it slightly detailed like this?
+2. **Context (DataContext.jsx)**
+   * **Context** helps all components (Assignments page, Dashboard, etc.) to get the same data.
+   * We also connect it with **localStorage** so the data doesn’t disappear on refresh.
+
+---
+
+3. **Data (data folder)**
+
+   * We keep our initial data like:
+
+     * `assignments.js` → assignment details
+     * `courses.js` → course details
+     * `student.js` → student’s personal info
+
+---
+
+4. **Hooks (useAssignmentFilter.js)**
+
+   *  **custom hook**
+   * Example: If user selects a course, only assignments from that course are shown.
+
+---
+
+5. **Components (Navbar, Sidebar, Dashboard, Breadcrumb)**
+
+   * These are reusable UI parts:
+
+     * **Navbar.jsx** → Top navigation
+     * **Sidebar.jsx** → Side navigation links
+     * **Dashboard.jsx** → Shows a summary
+     * **Breadcrumb.jsx** → Shows current page path
+
+---
+
+6. **Pages (Assignments, Courses, CGPA, DashboardWidget)**
+
+   * Each page focuses on one feature:
+
+     * **Assignments.jsx** → Shows assignments list with filter options.
+     * **Courses.jsx** → Shows available courses.
+     * **CGPA.jsx** → Displays CGPA or academic progress.
+     * **DashboardWidget.jsx** → Small cards with personal/student/course/notification info.
+
+---
+
+## How Everything Connects Together
+
+* When app runs → **App.jsx loads Navbar + Sidebar + current Page**.
+* Pages get data from **Context (DataContext.jsx)**.
+* Pages like Assignments use extra logic from **custom hook (useAssignmentFilter.js)**.
+* Data is taken from **data folder** (hardcoded for now).
+* Components like Breadcrumb or Dashboard just display information in a nice way.
+
+---
+
+👉 So the flow is like this:
+**main.jsx → App.jsx → Layout (Navbar + Sidebar + Page) → Page uses Context Data + Custom Hook → UI Components show it.**
+
+---
+
